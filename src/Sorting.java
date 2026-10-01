@@ -28,4 +28,43 @@ public class Sorting {
             }
         }
     }
+
+    static public void MergeSort(SortableObject[] arr, Comparator<SortableObject> comp){
+        int mid=arr.length/2;
+        SortableObject[] left=new SortableObject[mid];
+        SortableObject[] right=new SortableObject[arr.length-mid];
+        for(int i=0;i<left.length;i++){
+            left[i]=arr[i];
+        }
+        for(int i=0;i<right.length;i++){
+            right[i]=arr[i+mid];
+        }
+
+        if(left.length>1){
+            MergeSort(left,comp);
+        }
+        if(right.length>1){
+            MergeSort(right,comp);
+        }
+
+        int i = 0;
+        int j = 0;
+        while(i+j<arr.length && i<left.length && j<right.length){
+            if(comp.compare(left[i],right[j])<0){
+                arr[i+j]=left[i];
+                i++;
+            } else {
+                arr[i+j]=right[j];
+                j++;
+            }
+        }
+        while(i<left.length){
+            arr[i+j]=left[i];
+            i++;
+        }
+        while(j<right.length){
+            arr[i+j]=right[j];
+            j++;
+        }
+    }
 }
