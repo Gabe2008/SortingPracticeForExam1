@@ -1,7 +1,7 @@
 import java.util.Comparator;
 
 public class Sorting {
-    static public void SelectionSort(SortableObject[] arr, Comparator<SortableObject> comp){
+    static public void selectionSort(SortableObject[] arr, Comparator<SortableObject> comp){
         for(int i=0; i<arr.length; i++){
             int minID=i;
             for(int j=i+1; j<arr.length; j++){
@@ -15,7 +15,7 @@ public class Sorting {
         }
     }
 
-    static public void InsertionSort(SortableObject[] arr, Comparator<SortableObject> comp){
+    static public void insertionSort(SortableObject[] arr, Comparator<SortableObject> comp){
         for(int i =1; i<arr.length; i++){
             SortableObject moving=arr[i];
             for(int j = i-1; j>=0; j--){
@@ -29,7 +29,7 @@ public class Sorting {
         }
     }
 
-    static public void MergeSort(SortableObject[] arr, Comparator<SortableObject> comp){
+    static public void mergeSort(SortableObject[] arr, Comparator<SortableObject> comp){
         int mid=arr.length/2;
         SortableObject[] left=new SortableObject[mid];
         SortableObject[] right=new SortableObject[arr.length-mid];
@@ -41,16 +41,16 @@ public class Sorting {
         }
 
         if(left.length>1){
-            MergeSort(left,comp);
+            mergeSort(left,comp);
         }
         if(right.length>1){
-            MergeSort(right,comp);
+            mergeSort(right,comp);
         }
 
         int i = 0;
         int j = 0;
         while(i+j<arr.length && i<left.length && j<right.length){
-            if(comp.compare(left[i],right[j])<0){
+            if(comp.compare(left[i],right[j])<=0){
                 arr[i+j]=left[i];
                 i++;
             } else {
@@ -65,6 +65,17 @@ public class Sorting {
         while(j<right.length){
             arr[i+j]=right[j];
             j++;
+        }
+    }
+
+    static public void quickSort(SortableObject[] arr, int low, int high, Comparator<SortableObject> comp){
+        int pivotV = (low+high)/2;
+        SortableObject pivot=arr[pivotV];
+
+        for(int i =0; i<arr.length; i++){
+            if(comp.compare(pivot,arr[i])<=0){
+
+            }
         }
     }
 }
